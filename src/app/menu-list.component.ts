@@ -7,5 +7,5 @@ import { Component } from "@angular/core";
 })
 
 export class MenuListComponent {
-    pageTitle = 'Mensa INPS'
+    panelHeading = 'Menù della giornata'
 }
