@@ -15,7 +15,7 @@ export class DietComponent implements OnInit, OnChanges {
   constructor() { }
 
   onClick() {
-    this.notifyDiet.emit(`I am ${this.dietName}`)
+    this.notifyDiet.emit(`I am a ${this.dietName}`)
   }
 
   ngOnInit() {
