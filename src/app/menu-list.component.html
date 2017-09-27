@@ -1,23 +1,28 @@
 <div class='panel panel-primary'>
-    <div class='panel-heading'>
-        {{panelHeading}}
-    </div>
-    <div class='panel-body'>
-        <div class='table-responsive'>
-            <table class='table'>
-                <thead>
-                    <th>Portata</th>
-                    <th>Nome</th>
-                    <th>Prezzo</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Primo</td>
-                        <td>Carbonara</td>
-                        <td>7 euro</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class='panel-heading'>
+            {{panelHeading}}
+        </div>
+        <div class='panel-body'*ngIf='dishes && dishes.length'>
+            <div class='table-responsive'>
+                <table class='table'>
+                    <thead>
+                        <th></th>
+                        <th>Portata</th>
+                        <th>Nome</th>
+                        <th>Prezzo</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let dish of dishes'>
+                            <td><img [src]='dish.imageUrl'
+                                alt='dish image'
+                                [style.width.px]='imageWidth'>
+                            </td>
+                            <td>{{dish.course |uppercase}}</td>
+                            <td>{{dish.name}}</td>
+                            <td>{{dish.price | currency:'EUR':true:'1.2-2'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
