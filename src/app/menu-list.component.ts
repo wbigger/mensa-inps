@@ -16,10 +16,10 @@ export class MenuListComponent implements OnInit {
     imageMargin = 5;
     dishCounter = 0;
     dietMessage: string;
+    errorMessage: string
     dishes: Dish[]
 
     constructor(private _dishService:DishService) {}
-
 
     // Create a property with getter and setter
     // This property with underscore will store the data internally
@@ -76,6 +76,10 @@ export class MenuListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.dishes = this._dishService.getDishes()
+        this._dishService.getDishes()
+        .subscribe(
+            dishes=>this.dishes = dishes,
+            error=>this.errorMessage = <any>error,
+        )
     }
 }

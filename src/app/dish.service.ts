@@ -1,45 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Dish } from './dish';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do'
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class DishService {
 
-  constructor() { }
+  private _dishesUrl = './api/dishes.json'
 
-  getDishes() : Dish[] {
-    return [
-      {
-          'course': 'Primo',
-          'name': 'Carbonara',
-          'price': 6.5,
-          'imageUrl': 'http://img.taste.com.au/86bOXAkG/taste/2016/11/carbonara-sauce-28894-1.jpeg',
-          'counter': 0,
-          'diet': 'pork'
-      },
-      {
-          'course': 'Primo',
-          'name': 'Cacio & Pepe',
-          'price': 6.5,
-          'imageUrl': 'https://cms.splendidtable.org/sites/default/files/styles/w2000/public/Cacio-e-Pepe_TASTING-ROME.jpg',
-          'counter': 0,
-          'diet': 'vegetarian'
-      },
-      {
-          'course': 'Secondo',
-          'name': 'Platessa',
-          'price': 5,
-          'imageUrl': 'http://www.buonissimo.org/archive/borg/ivbJTo6zUXMeIkTw3%252FB%252BOe%252FYr971i3%252BH%252BDl3jE%252FTTk6gnY0PsxvV6g%253D%253D',
-          'counter': 0,
-          'diet': ''
-      },
-      {
-          'course': 'Contorno',
-          'name': 'Patate fritte vegane',
-          'price': 3,
-          'imageUrl': 'http://www.giallozafferano.it/images/ricette/8/896/foto_hd/hd292x195.jpg',
-          'counter': 1,
-          'diet': 'vegan'
-      },
-  ]
+  constructor(private _http: HttpClient) { }
+
+  getDishes() : Observable<Dish[]> {
+    return this._http.get<Dish[]>(this._dishesUrl)
+    .do(data => console.log('Dishes:' + JSON.stringify(data)))
+    .catch(this.handleError)
   }
+
+  private handleError(err: HttpErrorResponse)  {
+    // Manage the error!
+    let errMessage = err.status
+    console.log(errMessage)
+    return Observable.throw('Received error: '+errMessage)
+  }
+
 }

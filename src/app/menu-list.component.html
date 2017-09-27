@@ -3,7 +3,8 @@
         <h1>{{panelHeading}}</h1>
     </div>
     <div class='panel-body' *ngIf='dishes && dishes.length'>
-        {{dietMessage}}
+        <p>{{dietMessage}}</p>
+        <p>{{errorMessage}}</p>
         <div class='table-responsive'>
             <table class='table'>
                 <thead>
