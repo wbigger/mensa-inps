@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Dish } from "./dish";
 import { DishService } from "./dish.service";
 
@@ -9,13 +9,14 @@ import { DishService } from "./dish.service";
     styleUrls: ['./menu-list.component.css']
 })
 
-export class MenuListComponent  {
+export class MenuListComponent implements OnInit {
+    
     panelHeading = 'Menù della giornata'
     imageWidth = 100;
     imageMargin = 5;
     dishCounter = 0;
     dietMessage: string;
-    dishes: Dish[] = this._dishService.getDishes()
+    dishes: Dish[]
 
     constructor(private _dishService:DishService) {}
 
@@ -72,5 +73,9 @@ export class MenuListComponent  {
 
     onNotifyDiet(message: string) {
         this.dietMessage = message
+    }
+
+    ngOnInit(): void {
+        this.dishes = this._dishService.getDishes()
     }
 }
