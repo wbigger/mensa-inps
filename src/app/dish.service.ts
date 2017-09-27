@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class DishService {
@@ -16,6 +17,11 @@ export class DishService {
     return this._http.get<Dish[]>(this._dishesUrl)
     .do(data => console.log('Dishes:' + JSON.stringify(data)))
     .catch(this.handleError)
+  }
+
+  getDish(id:number): Observable<Dish> {
+    return this.getDishes()
+    .map((dishes:Dish[])=>dishes.find(d=>d.id==id))
   }
 
   private handleError(err: HttpErrorResponse)  {

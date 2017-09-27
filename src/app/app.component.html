@@ -1,1 +1,8 @@
-<app-menu-list></app-menu-list>
+<nav class='navbar navbar-default'>
+    <a class='navbar-brand'>Menu INPS</a>
+    <ul class='nav navbar-nav'>
+        <li><a [routerLink]='["/welcome"]'>Home</a></li>
+        <li><a [routerLink]='["/menu"]'>Menu</a></li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>

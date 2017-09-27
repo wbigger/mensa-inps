@@ -1,0 +1,13 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    Dettaglio piatto
+  </div>
+  <div class='panel-body' *ngIf='dish'>
+    <img [src]='dish.imageUrl' [style.width.px]='imageWidth' />
+    <p>{{dish.course}}</p>
+    <p>{{dish.name}}</p>
+    <!-- <p>{{dish.diet}}</p> -->
+    <app-diet [dietName]='dish.diet'></app-diet>
+    <p>{{dish.price}}</p>
+  </div>
+</div>

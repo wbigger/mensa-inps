@@ -4,5 +4,6 @@ export interface Dish {
     price: number
     imageUrl: string
     diet: string
+    id: number
     counter: number
 }

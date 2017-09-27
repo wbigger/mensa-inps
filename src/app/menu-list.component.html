@@ -20,7 +20,7 @@
                         <td><img [src]='dish.imageUrl' alt='dish image' [style.width.px]='imageWidth'>
                         </td>
                         <td>{{dish.course |uppercase}}</td>
-                        <td>{{dish.name}}</td>
+                        <td><a [routerLink]='["/menu",dish.id]'>{{dish.name}}</a></td>
                         <td>
                             <app-diet [dietName]='dish.diet'
                             (notifyDiet)='onNotifyDiet($event)'></app-diet>
