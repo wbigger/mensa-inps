@@ -1,0 +1,17 @@
+.panel-heading {
+    background-color: #005781;
+    border-color:  #005781;
+    /* this is the text color */
+    color: white 
+}
+
+.panel-primary {
+    border-color:  #005781;
+}
+
+.btn-primary {
+    background-color: #005781;
+    border-color:  #005781;
+    /* this is the text color */
+    color: white 
+}
