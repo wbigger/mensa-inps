@@ -76,9 +76,10 @@ export class MenuListComponent  {
     reset() {
         // Here we use the 'classic' for loop
         for (let dish of this.dishes) {
-            if (dish.counter > 0) {
-                console.log(`Hai ordinato ${dish.counter} ${(dish.counter==1)?'porzione':'porzioni'} di ${dish.name}`)
-            }
+            dish.counter = 0
+            // if (dish.counter > 0) {
+            //     console.log(`Hai ordinato ${dish.counter} ${(dish.counter==1)?'porzione':'porzioni'} di ${dish.name}`)
+            // }
         }
     }
 
