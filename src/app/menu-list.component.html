@@ -3,6 +3,7 @@
         <h1>{{panelHeading}}</h1>
     </div>
     <div class='panel-body' *ngIf='dishes && dishes.length'>
+        {{dietMessage}}
         <div class='table-responsive'>
             <table class='table'>
                 <thead>
@@ -20,7 +21,8 @@
                         <td>{{dish.course |uppercase}}</td>
                         <td>{{dish.name}}</td>
                         <td>
-                            <app-diet [dietName]='dish.diet'></app-diet>
+                            <app-diet [dietName]='dish.diet'
+                            (notifyDiet)='onNotifyDiet($event)'></app-diet>
                         </td>
                         <td>{{dish.price | currency:'EUR':true:'1.2-2'}}</td>
                         <td>

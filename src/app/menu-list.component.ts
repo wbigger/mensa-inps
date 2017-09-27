@@ -13,6 +13,7 @@ export class MenuListComponent  {
     imageWidth = 100;
     imageMargin = 5;
     dishCounter = 0;
+    dietMessage: string;
     dishes: Dish[] = [
         {
             'course': 'Primo',
@@ -40,11 +41,11 @@ export class MenuListComponent  {
         },
         {
             'course': 'Contorno',
-            'name': 'Patate fritte',
+            'name': 'Patate fritte vegane',
             'price': 3,
             'imageUrl': 'http://www.giallozafferano.it/images/ricette/8/896/foto_hd/hd292x195.jpg',
             'counter': 1,
-            'diet': 'vegetarian'
+            'diet': 'vegan'
         },
     ]
 
@@ -96,5 +97,9 @@ export class MenuListComponent  {
         let totPrice = 0
         this.dishes.forEach(x => totPrice += (x.counter * x.price))
         console.log('Hai speso un totale di '+ totPrice + ' euro')
+    }
+
+    onNotifyDiet(message: string) {
+        this.dietMessage = message
     }
 }

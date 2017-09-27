@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-diet',
@@ -9,8 +9,14 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 export class DietComponent implements OnInit, OnChanges {
 
   @Input() dietName: string
+   
+  @Output() notifyDiet: EventEmitter<string> = new EventEmitter<string>()
 
   constructor() { }
+
+  onClick() {
+    this.notifyDiet.emit(`I am ${this.dietName}`)
+  }
 
   ngOnInit() {
   }
