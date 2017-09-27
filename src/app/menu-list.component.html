@@ -1,6 +1,6 @@
 <div class='panel panel-primary'>
         <div class='panel-heading'>
-            {{panelHeading}}
+            <h1>{{panelHeading}}</h1>
         </div>
         <div class='panel-body'*ngIf='dishes && dishes.length'>
             <div class='table-responsive'>
@@ -10,6 +10,7 @@
                         <th>Portata</th>
                         <th>Nome</th>
                         <th>Prezzo</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <tr *ngFor='let dish of dishes'>
@@ -20,9 +21,18 @@
                             <td>{{dish.course |uppercase}}</td>
                             <td>{{dish.name}}</td>
                             <td>{{dish.price | currency:'EUR':true:'1.2-2'}}</td>
+                            <td>
+                                <button class='btn btn-primary' (click)='decCounter(dish)'>-</button>
+                                <input [(ngModel)]='dish.counter' min='0' />
+                                <button class='btn btn-primary' (click)='incCounter(dish)'>+</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+
+            <p>Hai speso un totale di {{totPrice|currency:'EUR':true}}</p>
+            <button class='btn btn-default' (click)='reset()'>reset</button>
+            <button class='btn btn-primary' (click)='doOrder()'>Ordina</button>
             </div>
         </div>
     </div>
