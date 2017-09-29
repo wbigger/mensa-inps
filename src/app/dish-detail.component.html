@@ -3,11 +3,16 @@
     Dettaglio piatto
   </div>
   <div class='panel-body' *ngIf='dish'>
-    <img [src]='dish.imageUrl' [style.width.px]='imageWidth' />
+    <img [src]='dish.imageUrl' alt='dish large image' [style.width.px]='300' />
     <p>{{dish.course}}</p>
     <p>{{dish.name}}</p>
     <!-- <p>{{dish.diet}}</p> -->
     <app-diet [dietName]='dish.diet'></app-diet>
     <p>{{dish.price}}</p>
+  </div>
+  <div class='panel-footer'>
+    <a class='btn btn-default' (click)='onBack()'>
+      Back
+    </a>
   </div>
 </div>

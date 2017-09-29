@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Dish } from './dish';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DishService } from './dish.service';
 
 @Component({
@@ -12,18 +12,22 @@ export class DishDetailComponent implements OnInit {
 
   dish: Dish
   errorMessage: string
-  imageWidth: 30
 
   constructor(private _route: ActivatedRoute,
-  private _dishService:DishService) {}
+    private _router: Router,
+    private _dishService: DishService) { }
+
+  onBack(): void {
+      this._router.navigate(['/menu'])
+  }
 
   ngOnInit() {
     let id = +this._route.snapshot.paramMap.get('id')
     this._dishService.getDish(id)
-    .subscribe(
-        dish=>this.dish = dish,
-        error=>this.errorMessage = <any>error,
-    )   
+      .subscribe(
+      dish => this.dish = dish,
+      error => this.errorMessage = <any>error,
+    )
   }
 
 }
