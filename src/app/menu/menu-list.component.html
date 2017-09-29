@@ -44,10 +44,39 @@
                     </tr>
                 </tbody>
             </table>
-
-            <p>Hai speso un totale di {{totPrice|currency:'EUR':true}}</p>
-            <button class='btn btn-default' (click)='reset()'>reset</button>
+        </div>
+    </div>
+    <div *ngIf='totPrice > 0'>
+        <div class='panel-heading'>
+            Vassoio
+        </div>
+        <div class='panel-body'>
+            <table class='table'>
+                <thead>
+                    <th>Nome</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let dish of orderedDishes'>
+                        <td>{{dish.name}}</td>
+                        <td>{{dish.counter}}</td>
+                        <td>{{dish.price * dish.counter | currency:'EUR':true:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align='right'><b>Conto attuale:</b></td>
+                        <td><b>{{totPrice|currency:'EUR':true}}</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class='panel-footer' align='center'>
+            <button class='btn btn-default' (click)='reset()'>Cancella</button>
             <button class='btn btn-primary' (click)='doOrder()'>Ordina</button>
+        </div>
+        <div class='panel-footer' align='center'>
+               <p>{{dietMessage}}</p>
         </div>
     </div>
 </div>
