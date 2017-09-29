@@ -3,12 +3,12 @@
     <h1>{{dish.name | uppercase }}</h1>
   </div>
   <div class='panel-body' *ngIf='dish'>
-    <div class='split2'>
-      <div>
+    <div class='table-responsive split2'>
+      <div class='table-responsive'>
         <img [src]='dish.imageUrl' alt='dish large image' [style.width.px]='imageWidth' />
       </div>
-      <div class='splittop'>
-        <div class='split2'>
+      <div class='table-responsive splittop'>
+        <div class='table-responsive split2'>
           <div>
             <p class='p1'>PORTATA:</p>
           </div>
@@ -16,7 +16,7 @@
             <p class='p2'>{{dish.course | uppercase}}</p>
           </div>
         </div>
-        <div class='split2'>
+        <div class='table-responsive split2'>
           <div>
             <p class='p1'>DIETA:</p>
           </div>
@@ -26,7 +26,7 @@
             </p>
           </div>
         </div>
-        <div class='split2'>
+        <div class='table-responsive split2'>
           <div>
             <p class='p1'>PREZZO:</p>
           </div>
