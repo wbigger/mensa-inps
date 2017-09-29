@@ -3,7 +3,7 @@
     Dettaglio piatto
   </div>
   <div class='panel-body' *ngIf='dish'>
-    <img [src]='dish.imageUrl' alt='dish large image' [style.width.px]='300' />
+    <img [src]='dish.imageUrl' alt='dish large image' [style.width.px]='imageWidth' />
     <p>{{dish.course}}</p>
     <p>{{dish.name}}</p>
     <!-- <p>{{dish.diet}}</p> -->
