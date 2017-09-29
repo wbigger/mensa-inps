@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Dish } from "./dish";
 import { DishService } from "./dish.service";
+import { DataPersistanceService } from "../data-persistance.service";
 
 
 @Component({
@@ -10,21 +11,26 @@ import { DishService } from "./dish.service";
 })
 
 export class MenuListComponent implements OnInit {
-    
+
     panelHeading = 'Menù della giornata'
     imageWidth = 100;
     imageMargin = 5;
     dishCounter = 0;
     dietMessage: string;
     errorMessage: string
-    dishes: Dish[]
-    //orderedDishes: Dish[]
+    get dishes() {
+        return this._data.dishes
+    }
+    set dishes(dishes: Dish[]) {
+        this._data.dishes = dishes
+    }
 
-    constructor(private _dishService:DishService) {}
+    constructor(private _dishService: DishService,
+        private _data: DataPersistanceService) { }
 
     // Create a property with getter and setter
     // This property with underscore will store the data internally
-    _totPrice:number = 0
+    _totPrice: number = 0
     // This function will get the value of the property
     get totPrice(): number {
         this._totPrice = 0
@@ -32,12 +38,12 @@ export class MenuListComponent implements OnInit {
         return this._totPrice;
     }
     // This function will set the value of the property
-    set totPrice(value:number){
+    set totPrice(value: number) {
         this._totPrice = value
     }
 
     get orderedDishes(): Dish[] {
-        return this.dishes.filter(d=> d.counter>0);
+        return this.dishes.filter(d => d.counter > 0);
     }
     incCounter(d: Dish) {
         //this.dishes[0].counter = +this.dishes[0].counter + 1
@@ -66,15 +72,15 @@ export class MenuListComponent implements OnInit {
 
         // Filter the elements and print the log
         this.dishes
-        .filter(dish => dish.counter > 0)
-        .forEach(dish => console.log(`Hai ordinato ${dish.counter} ${(dish.counter==1)?'porzione':'porzioni'} di ${dish.name}`))
+            .filter(dish => dish.counter > 0)
+            .forEach(dish => console.log(`Hai ordinato ${dish.counter} ${(dish.counter == 1) ? 'porzione' : 'porzioni'} di ${dish.name}`))
 
         // Sum all the prices.
         // As you can see, the arrow function can access external vars
         let totPrice = 0
         this.dishes.forEach(x => totPrice += (x.counter * x.price))
-        console.log('Hai speso un totale di '+ totPrice + ' euro')
-        this.dietMessage = 'Grazie, hai speso un totale di '+ totPrice + ' euro'
+        console.log('Hai speso un totale di ' + totPrice + ' euro')
+        this.dietMessage = 'Grazie, hai speso un totale di ' + totPrice + ' euro'
     }
 
     /*onNotifyDiet(message: string) {
@@ -82,10 +88,12 @@ export class MenuListComponent implements OnInit {
     }*/
 
     ngOnInit(): void {
-        this._dishService.getDishes()
-        .subscribe(
-            dishes=>this.dishes = dishes,
-            error=>this.errorMessage = <any>error,
-        )
+        if (!this.dishes) {
+            this._dishService.getDishes()
+                .subscribe(
+                dishes => this.dishes = dishes,
+                error => this.errorMessage = <any>error,
+            )
+        }
     }
 }

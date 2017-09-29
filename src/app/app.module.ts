@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { MenuModule } from './menu/menu.module';
+import { DataPersistanceService } from './data-persistance.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { MenuModule } from './menu/menu.module';
     ]),
     MenuModule
   ],
-  providers: [],
+  providers: [DataPersistanceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
