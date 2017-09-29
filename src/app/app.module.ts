@@ -10,6 +10,7 @@ import { DietComponent } from './diet.component';
 import { DishDetailComponent } from './dish-detail.component';
 import { WelcomeComponent } from './welcome.component';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { DishDetailGuard } from './dish-detail.guard';
 
 
 @NgModule({
@@ -27,13 +28,13 @@ import { PageNotFoundComponent } from './page-not-found.component';
     HttpClientModule,
     RouterModule.forRoot([
       {path:'menu', component: MenuListComponent},
-      {path:'menu/:id', component: DishDetailComponent},
+      {path:'menu/:id', component: DishDetailComponent, canActivate:[DishDetailGuard]},
       {path:'welcome', component: WelcomeComponent},
       {path:'', redirectTo:'welcome', pathMatch:'full'},
       {path:'**', component:PageNotFoundComponent}
     ])
   ],
-  providers: [],
+  providers: [DishDetailGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
