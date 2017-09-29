@@ -12,6 +12,7 @@ export class DishDetailComponent implements OnInit {
 
   dish: Dish
   errorMessage: string
+  imageWidth = 300
 
   constructor(private _route: ActivatedRoute,
     private _router: Router,
