@@ -18,6 +18,7 @@ export class MenuListComponent implements OnInit {
     dietMessage: string;
     errorMessage: string
     dishes: Dish[]
+    //orderedDishes: Dish[]
 
     constructor(private _dishService:DishService) {}
 
@@ -35,6 +36,9 @@ export class MenuListComponent implements OnInit {
         this._totPrice = value
     }
 
+    get orderedDishes(): Dish[] {
+        return this.dishes.filter(d=> d.counter>0);
+    }
     incCounter(d: Dish) {
         //this.dishes[0].counter = +this.dishes[0].counter + 1
         d.counter = +d.counter + 1
@@ -54,6 +58,7 @@ export class MenuListComponent implements OnInit {
             //     console.log(`Hai ordinato ${dish.counter} ${(dish.counter==1)?'porzione':'porzioni'} di ${dish.name}`)
             // }
         }
+        this.dietMessage = ''
     }
 
     doOrder() {
@@ -69,11 +74,12 @@ export class MenuListComponent implements OnInit {
         let totPrice = 0
         this.dishes.forEach(x => totPrice += (x.counter * x.price))
         console.log('Hai speso un totale di '+ totPrice + ' euro')
+        this.dietMessage = 'Grazie, hai speso un totale di '+ totPrice + ' euro'
     }
 
-    onNotifyDiet(message: string) {
+    /*onNotifyDiet(message: string) {
         this.dietMessage = message
-    }
+    }*/
 
     ngOnInit(): void {
         this._dishService.getDishes()
