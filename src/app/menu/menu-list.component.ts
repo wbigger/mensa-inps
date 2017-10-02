@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Dish } from "./dish";
 import { DishService } from "./dish.service";
-import { DataPersistanceService } from "../data-persistance.service";
+import { DataPersistanceService } from "./data-persistance.service";
 
 
 @Component({

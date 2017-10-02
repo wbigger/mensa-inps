@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Dish } from './menu/dish';
+import { Dish } from './dish';
 
 @Injectable()
 export class DataPersistanceService {
