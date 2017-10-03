@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { MenuModule } from './menu/menu.module';
 import { HomeModule } from './home/home.module';
+import { NamesModule } from './names/names.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HomeModule } from './home/home.module';
       {path:'**', component:PageNotFoundComponent}
     ]),
     MenuModule,
-    HomeModule
+    HomeModule,
+    NamesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

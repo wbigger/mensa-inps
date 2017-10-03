@@ -1,0 +1,4 @@
+<input list="names" [(ngModel)]='namesPrefix'>
+<datalist id="names">
+  <option *ngFor='let name of filteredNames' [value]='name'>
+</datalist>
